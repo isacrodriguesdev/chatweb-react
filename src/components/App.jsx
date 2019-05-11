@@ -9,17 +9,24 @@ import Contacts from './menu/panels/Contacts'
 import Active from './header/Active'
 import Mount from './utils/Mount'
 
+import {Creators as actions} from '../store/actions'
+
 class App extends Component {
+
+   closePanels(e) {
+      e.preventDefault()
+      this.props.closeAllPanels()
+   }
 
    render() {
 
       return (
-         <div className="container">
+         <div className="container" onClick={this.closePanels.bind(this)}>
 
             <div id="header">
                <Profile />
                <div id="active-chat">
-                  <Mount render={this.props.openChat}>
+                  <Mount render={this.props._openChat}>
                      <Active name="Lena Souza " isdigit="digitando..." />
                   </Mount>
                </div>
@@ -34,13 +41,13 @@ class App extends Component {
             <div id="main">
                <div className="panels-main">
 
-                  <Mount render={this.props.openHome}> <h2>Home</h2> </Mount>
+                  <Mount render={this.props._openHome}> <h2>Home</h2> </Mount>
 
-                  <Mount render={this.props.openChat}> 
+                  <Mount render={this.props._openChat}> 
                      <Chat data-chat={{}} /> 
                   </Mount>
 
-                  <Mount render={this.props.openSettings}> <Settings /> </Mount>
+                  <Mount render={this.props._openSettings}> <Settings /> </Mount>
                   
                </div>
             </div>
@@ -52,13 +59,13 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => {
 
-   return bindActionCreators({}, dispatch)
+   return bindActionCreators(actions, dispatch)
 }
 
 export default connect((state) => ({
 
-   openHome: state.actions.openHome,
-   openChat: state.actions.openChat,
-   openSettings: state.actions.openSettings
+   _openHome: state.actions.openHome,
+   _openChat: state.actions.openChat,
+   _openSettings: state.actions.openSettings
 
 }), mapDispatchToProps)(App)

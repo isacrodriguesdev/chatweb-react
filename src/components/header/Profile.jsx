@@ -19,6 +19,13 @@ class Profile extends Component {
       this.props.togglePanelMini()
    }
 
+   // EVENTS
+
+   togglePanelMini(e) {
+      e.stopPropagation()
+      this.props.togglePanelMini()
+   }
+
    render() {
 
       return (
@@ -29,7 +36,7 @@ class Profile extends Component {
                <div content="user">
                   <img src="https://lh3.googleusercontent.com/a-/AAuE7mAy2cm5jbpX8w83xKNXs6xZRolle7bBF1BNZd6s=s96" 
                   alt={"name"} title="name" 
-                  onClick={() => this.props.togglePanelMini()}
+                  onClick={this.togglePanelMini.bind(this)}
                   />
                </div>
                <div content="mini-panel">

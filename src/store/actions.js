@@ -10,6 +10,8 @@ const initial = {
 }
 
 const Types = {
+   CLOSED_ALL_PANELS: "app/CLOSE_ALL_PANELS",
+
    OPENED_HOME:"main/OPENED_HOME",
    OPENED_CHAT:"main/OPENED_CHAT",
    OPENED_SETTINGS:"main/OPENED_SETTINGS",
@@ -22,7 +24,10 @@ const Types = {
 }
 
 export const Creators = {
-   
+
+   closeAllPanels: () => {
+      return { type: Types.CLOSED_ALL_PANELS }
+   },
    togglePanelMini: () => {
       return { type: Types.TOGGLE_PANEL_MINI }
    },
@@ -45,6 +50,12 @@ export default function(state=initial, action) {
    const {type, payload} = action
 
    switch(type) {
+      case Types.CLOSED_ALL_PANELS:
+         return {
+            ...state,
+            toggle_panel_mini: false,
+            toggle_panel_emojis: false,
+         }
       case Types.TOGGLE_PANEL_MINI:
          return {...state, toggle_panel_mini: !state.toggle_panel_mini}
       case Types.TOGGLE_PANEL_EMOJIS:

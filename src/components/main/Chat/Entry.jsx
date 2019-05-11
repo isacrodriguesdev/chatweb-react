@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 // import {reduxForm} from 'redux-form'
 
 import {Creators as chatActions} from '../../../store/chat'
+import {Creators as actions} from '../../../store/actions'
 
 class Entry extends Component {
 
@@ -13,6 +14,7 @@ class Entry extends Component {
         this.state = {
             value: ""
         }
+        console.log(this.props)
     }
 
     handleEntry(e) {
@@ -34,13 +36,19 @@ class Entry extends Component {
         }
     }
 
+    // EVENTS 
+    togglePanelEmojis(e) {
+        e.stopPropagation()
+        this.props.togglePanelEmojis()
+    }
+
     render() {
 
         return (
             <div className="input-chat-entry">
              <img src="https://image.flaticon.com/icons/svg/176/176663.svg" 
              style={{margin: "0px 8px", width: "40px",cursor:"pointer"}}
-             onClick={() => this.props.togglePanelEmojis()}
+             onClick={this.togglePanelEmojis.bind(this)}
              />
 
                 <input type="text" placeholder="Envie uma mensagem" 
@@ -55,7 +63,7 @@ class Entry extends Component {
 
 const mapDispatchToProps = (dispatch) => {
 
-    return bindActionCreators({...chatActions}, dispatch)
+    return bindActionCreators({...chatActions, ...actions}, dispatch)
 }
 
 export default connect((state) => ({

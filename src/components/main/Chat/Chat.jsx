@@ -12,8 +12,6 @@ class Chat extends Component {
 
     messages() {
 
-        console.log(this.props.messages)
-
         const messages = []
 
         this.props.messages.map(message => {

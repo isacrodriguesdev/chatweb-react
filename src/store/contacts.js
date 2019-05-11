@@ -4,6 +4,7 @@ const initial = {
    users: [{
       name: "Matheus Souza",
       id: 2,
+      photoUrl: "https://scontent.fgyn11-1.fna.fbcdn.net/v/t1.0-9/55560466_10206725967505864_4159818839997022208_n.jpg?_nc_cat=108&_nc_ht=scontent.fgyn11-1.fna&oh=b8098724afa1ec99f8545243058ced8c&oe=5D2BDF09",
       status: 1,
       chatId: 10,
    },

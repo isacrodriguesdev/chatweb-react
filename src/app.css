@@ -240,7 +240,7 @@
 #list-contacts ul li:hover {
   transition-duration: 0.4s;
   box-shadow: 2px 2px 6px #e0e0e0;
-  background-color: #ebebeb;
+  background-color: #ebebebd2;
 }
 #list-contacts .item-user-list {
   display: flex;
