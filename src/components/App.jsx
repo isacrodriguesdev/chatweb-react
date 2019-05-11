@@ -14,7 +14,6 @@ import {Creators as actions} from '../store/actions'
 class App extends Component {
 
    closePanels(e) {
-      e.preventDefault()
       this.props.closeAllPanels()
    }
 
