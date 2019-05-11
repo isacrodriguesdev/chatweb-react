@@ -1,0 +1,97 @@
+$headerHeight: 60px;
+$flexLayout: 70%;
+$defaultColor: #3c3c50;
+
+$shadow: 2px 2px 6px rgba(192, 192, 192, 0.664);
+
+@mixin avatar($size, $radius: 50%, $cursor: pointer) {
+    width: $size;
+    height: $size;
+    border-radius: $radius;
+    cursor: $cursor;
+}
+@mixin btnIcon($size) {
+    height: $size;
+    width: $size;
+    cursor: pointer;
+}
+
+@import './Fonts.scss';
+@import './Chat.scss';
+@import './Header.scss';
+@import './Menu.scss';
+@import './Contacts.scss';
+@import './Settings.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+input {
+    font-family: "Muli", sans-serif;
+}
+
+html, body, #app, #root {
+    height: 100%;
+    font-family: 'Nunito', sans-serif;
+}
+input {
+    border: none;
+    outline: 0;
+    border-radius: 2px;
+}
+
+#header {
+    position: fixed;
+    background: $defaultColor;
+    height: $headerHeight;
+    width: 100%;
+    z-index: 100;
+}
+.container {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+
+    #menu {
+        display: flex;
+        flex: 1;
+        height: 100vh;
+        background-color: rgb(255, 255, 255);
+        position: relative;
+        // margin-top: $headerHeight;
+        // overflow: hidden;
+    }
+    #main {
+        height: 100%;
+        width: $flexLayout;
+    }
+    .panels-main, #chat {
+        height: 100%;
+    }
+}
+.panels-menu {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: $headerHeight;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction:column;
+}
+.w100 {
+    width: 100%;
+}
+.h100 {
+    height: 100%;
+}

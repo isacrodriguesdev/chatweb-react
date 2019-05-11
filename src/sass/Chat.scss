@@ -1,0 +1,115 @@
+#chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    background-image: url('./images/backgrounds/bg2.jpg');
+    background-size: cover;
+    background-attachment: local;
+
+    .chat-entry {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 90px;
+        height: auto;
+        background-color: #f5f5f5;
+    }
+    .input-chat-entry {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        input {
+            padding: 10px 15px;
+            border: 1px solid rgb(207, 207, 207);
+            border-radius: 3px;
+            width: 90%;
+            font-size: .88em;
+            font-family: 'Muli', sans-serif;
+            &:focus{
+                box-shadow: $shadow;
+            }
+        }
+    }
+}
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin-top: $headerHeight + 3px;
+    overflow-y: auto; 
+    &::-webkit-scrollbar { width:10px; background:#ffffff; }
+    &::-webkit-scrollbar-thumb { border-radius:5px; background:#b3b3b3;  }
+    padding-left: 100px;
+    padding-right: 100px;
+
+    .input {
+        margin: 5px;
+
+        .content-message-in {
+            background-color: rgba(255, 255, 255, 0.95);
+            width: max-content;
+            max-width: 80%;
+            word-wrap: break-word;
+            border-radius: 5px;
+            padding: 5px 8px;
+            font-family: "Muli", sans-serif;
+        }
+    }
+    .output {
+        margin: 5px;
+        right: 0;
+        display: flex;
+        justify-content: flex-end;
+
+        .content-message-out {
+            background-color: rgba(114, 206, 103, 0.94);
+            width: max-content;
+            max-width: 80%;
+            word-wrap: break-word;
+            border-radius: 5px;
+            padding: 5px 8px;
+            color: white;
+            font-family: "Muli", sans-serif;
+        }
+    }
+    
+}
+// Emojis ta bugado elementos si empurrando
+.mini-panel-emojis {
+    display: flex;
+    position: absolute;
+    bottom: 14.5%;
+    left: 100% - $flexLayout + 4%;
+    border-radius: 2px;
+
+    background-color: white;
+    height: auto;
+    width: 20%;
+    .emojis {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 5px;
+        $imgSize: 40px;
+        img {
+            width: $imgSize;
+            height: $imgSize;
+            margin: 5px;
+            padding: 5px;
+            cursor: pointer;
+            &:hover {
+                transition-duration: 0.2s;
+                margin: 5px - 5;
+                padding: 5px - 5;
+                width: $imgSize + 5;
+                height: $imgSize + 5;
+            }
+        }
+    }
+}

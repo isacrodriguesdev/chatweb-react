@@ -1,0 +1,39 @@
+#panel-contacts {
+   height: 100%;
+
+   #list-contacts {
+      ul {
+         height: 100%;
+         overflow-y: auto;
+         &::-webkit-scrollbar { width:8px; background:#ffffff; }
+         &::-webkit-scrollbar-thumb { border-radius:5px; background:#b3b3b3;  }
+      }
+   }
+}
+
+.search {
+   position: relative;
+   height: 82px;
+   width: 100%;
+   background-color: #f5f5f5;
+   border-bottom: 1px solid rgba(223, 223, 223, 0.863);
+   .search-input {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      input {
+         font-family: 'Muli', sans-serif;
+         padding: 12px 15px;
+         border-radius: 20px;
+         width: 90%;
+         border: 1px solid rgb(230, 230, 230);
+         box-shadow: 2px 2px 5px rgba(192, 192, 192, 0.432);
+         
+         &:focus { 
+            border: 1px solid rgb(48, 194, 109);
+         }
+      }
+   }
+}
