@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 class MiniPanel extends Component {
 
    onChangeIn(e) {
-      console.log(e)
+      console.log(e.target.files)
       e.stopPropagation()
    }
 
