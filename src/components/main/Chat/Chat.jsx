@@ -65,6 +65,6 @@ export default connect((state) => ({
 
     toggle_emojis: state.actions.toggle_panel_emojis,
     messages: state.chat.messages,
-    id: state.user.id
+    id: state.auth.id
 
 }), mapDispatchToProps)(Chat)

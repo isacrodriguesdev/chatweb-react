@@ -1,22 +1,22 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
 
 import App from './App'
 import Login from './auth/Login'
 
-const isAuthenticated = true
+class Routes extends Component {
 
-const PrivateRoute = ({component: Component, ...rest}) => (
-   <Route {...rest} render={(props) => (
-      isAuthenticated ? <Component {...props} /> : <Redirect to='/login' />
-      
-   )} />
-)
+   render() {
 
+      const PrivateRoute = ({component: Component, ...rest}) => (
+         <Route {...rest} render={(props) => (
+            this.props.isLogged ? <Component {...props} /> : <Redirect to='/login' />
+            
+         )} />
+      )
 
-const Routes = function() {
-
-   return (
+      return (
       <BrowserRouter>
 
          <Switch>
@@ -26,6 +26,9 @@ const Routes = function() {
       
       </BrowserRouter>
    )
+   }
 }
 
-export default Routes
+export default connect((state) => ({
+   isLogged: state.auth.isLogged
+}))(Routes)

@@ -14,7 +14,6 @@ class Entry extends Component {
         this.state = {
             value: ""
         }
-        console.log(this.props)
     }
 
     handleEntry(e) {
@@ -68,7 +67,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect((state) => ({
 
-    id: state.user.id,
+    id: state.auth.id,
     name: state.user.name
 
 }), mapDispatchToProps)(Entry)

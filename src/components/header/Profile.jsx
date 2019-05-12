@@ -8,6 +8,7 @@ import MiniPanel from './panels/MiniPanel'
 import Mount from '../utils/Mount'
 
 import {Creators as actions} from '../../store/actions'
+import {Creators as userActions} from '../../store/user'
 
 class Profile extends Component {
 
@@ -15,7 +16,15 @@ class Profile extends Component {
 
    }
    changePhoto(e) {
-      console.log(e.target.files)
+
+      const reader = new FileReader()
+
+      reader.onload = (e) => {
+         this.props.changePhoto(this.props.id, e.target.result)
+      }
+      
+      reader.readAsDataURL(e.target.files[0])
+
       this.props.togglePanelMini()
    }
 
@@ -26,22 +35,28 @@ class Profile extends Component {
       this.props.togglePanelMini()
    }
 
+   openChat(e) {
+      e.stopPropagation()
+      this.props.hasChat.id ? this.props.openChat() : console.log('Sem chat')
+   }
+
    render() {
 
       return (
          <div id="profile">
 
+
             <div id="user-profile">
 
                <div content="user">
-                  <img src="https://lh3.googleusercontent.com/a-/AAuE7mAy2cm5jbpX8w83xKNXs6xZRolle7bBF1BNZd6s=s96" 
-                  alt={"name"} title="name" 
+                  <img src={this.props.user.photoUrl} 
+                  title={this.props.user.name} 
                   onClick={this.togglePanelMini.bind(this)}
                   />
                </div>
                <div content="mini-panel">
                   <img src="https://image.flaticon.com/icons/svg/134/134908.svg"
-                  onClick={() => this.props.openChat()} 
+                  onClick={this.openChat.bind(this)} 
                   />
                   <img src={iconAdd} 
                   />
@@ -50,9 +65,9 @@ class Profile extends Component {
                   />
                </div>
             </div>
-            <Mount render={this.props.togglePanel}>
-               <MiniPanel onChange={this.changePhoto.bind(this)} />
-            </Mount>
+
+            <MiniPanel onChange={(this.changePhoto.bind(this))} render={this.props.togglePanel} />
+
          </div>
       )
    }
@@ -60,11 +75,14 @@ class Profile extends Component {
 
 const mapDispatchToProps = (dispatch) => {
 
-   return bindActionCreators(actions, dispatch)
+   return bindActionCreators({...actions, ...userActions}, dispatch)
 }
 
 export default connect((state) => ({
    togglePanel: state.actions.toggle_panel_mini,
-   togglePanelSettings: state.actions.toggle_panel_settings
+   togglePanelSettings: state.actions.toggle_panel_settings,
+   hasChat: state.chat.user,
+   id: state.auth.id,
+   user: state.user
 
 }), mapDispatchToProps)(Profile)

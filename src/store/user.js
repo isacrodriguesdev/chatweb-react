@@ -1,21 +1,32 @@
 import axios from 'axios'
 
 const initial = {
-    isLogged: false,
-    id: 1,
-    token: null,
     name: "Isac S. Rodrigues Silva",
     email: "isac.sergio@outlook.com",
-    photoUrl: "https://scontent.fgyn11-1.fna.fbcdn.net/v/t1.0-9/55604852_2005508002911820_5414181661044637696_n.jpg?_nc_cat=111&_nc_ht=scontent.fgyn11-1.fna&oh=b78f41966e342236382202b40e5ddbf0&oe=5D685D40",
+    photoUrl: "https://lh3.googleusercontent.com/a-/AAuE7mAy2cm5jbpX8w83xKNXs6xZRolle7bBF1BNZd6s=s96",
     status: 1,
+    totalFriends: 3,
+    totalOnline: 1
 }
 
 const Types = {
-    LOGGED_SYSTEM: 'user/LOGGED_SYSTEM'
+    GETED_USER: "GETED_USER",
+    CHANGED_PHOTO: "user/CHANGED_PHOTO"
 }
 
 export const Creators = {
-    
+
+    getAuthUser: (token) => {
+        return dispatch => {
+            
+        }
+    },
+    changePhoto: (id, photo) => {
+        return {
+            type: Types.CHANGED_PHOTO,
+            payload: {id, photo}
+        }
+    }
 }
 
 export default function(state = initial, action) {
@@ -23,8 +34,10 @@ export default function(state = initial, action) {
     const {type, payload} = action
 
     switch(type) {
-        case Types.LOGGED_SYSTEM:
-            return {...state, isLogged: true}
+        case Types.GETED_USER:
+            return {...state, payload}
+        case Types.CHANGED_PHOTO:
+            return {...state, photoUrl: payload.photo}
         default:
             return state
     }

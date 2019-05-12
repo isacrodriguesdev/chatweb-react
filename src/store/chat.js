@@ -1,25 +1,20 @@
 import axios from 'axios'
 
 const initial = {
-   chatId: 10,
+   user: {},
+   isTyping: false,
    messages: [{
       id: 2,
-      name: "Matheus Souza",
+      name: "Ana",
       type: "text",
       date: Date.now(),
       content: "Oi como vc esta?"
    },
-   {
-      id: 1,
-      type: "text",
-      date: Date.now(),
-      content: "Estou de boa"
-   }
    ]
 }
 
 const Types = {
-   STARTED_CHAT: 'chat/STARTED_CHAT',
+   HANDLE_CHAT: 'chat/HANDLE_CHAT',
    CREATED_MESSAGE: 'chat/CREATED_MESSAGE'
 }
 
@@ -30,6 +25,12 @@ export const Creators = {
          type: Types.CREATED_MESSAGE,
          payload: message
       }
+   },
+   handleChat: (user) => {
+      return {
+         type: Types.HANDLE_CHAT,
+         payload: user
+      }
    }
 }
 
@@ -38,8 +39,11 @@ export default function (state = initial, action) {
    const { type, payload } = action
 
    switch (type) {
-      case Types.STARTED_CHAT:
-         return {}
+      case Types.HANDLE_CHAT:
+         return {
+            ...state,
+            user: payload
+         }
       case Types.CREATED_MESSAGE: 
          return {
             ...state,

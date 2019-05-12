@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import iconChat from '../../../images/icons/chat.png'
 import Search from '../../utils/Search'
 import {Creators as contatcsActions} from '../../../store/contacts'
+import {Creators as chatActions} from '../../../store/chat'
+import {Creators as actions} from '../../../store/actions'
 
 class Contacts extends Component {
 
@@ -40,13 +42,19 @@ class Contacts extends Component {
       }
    }
 
+   getUser(e) {
+      this.props.handleChat(JSON.parse(e.currentTarget.dataset.user))
+      this.props.openChat()
+   }
+
    contacts() { // listar usuarios nos contatos
-
       const users = []
-
       this.props.contacts.map(user => {
          users.push(
-            <li key={user.id}>
+            <li key={user.id} 
+            data-user={JSON.stringify(user)}
+            onClick={this.getUser.bind(this)}
+            >
                <div className="item-user-list">
                   <div className="item-avatar">
                      <img src={user.photoUrl}/>
@@ -95,7 +103,11 @@ class Contacts extends Component {
 
 const mapDispatchToProps = (dispatch) => {
 
-   return bindActionCreators({...contatcsActions}, dispatch)
+   return bindActionCreators({
+      ...contatcsActions,
+      ...chatActions,
+      ...actions
+   }, dispatch)
 }
 
 export default connect((state) => ({

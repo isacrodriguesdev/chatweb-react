@@ -1,4 +1,19 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow:100,200,300,400,500,600,700,900|Catamaran:100,200,300,400,500,600,700,800,900|Comfortaa:300,400,500,600,700|Inconsolata:400,700|Mukta:200,300,400,500,600,700|Muli:200,300,400,600,700|Nunito:200,300,400,600,700,800,900|Quicksand:300,400,500,700|Rajdhani:300,400,500,600,700");
+#panel-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 200px;
+}
+#panel-login input {
+  font-family: "Muli", sans-serif;
+  padding: 12px 15px;
+  border-radius: 2px;
+  width: 90%;
+  border: 1px solid #e6e6e6;
+  box-shadow: 2px 2px 5px rgba(192, 192, 192, 0.432);
+}
+
 #chat {
   display: flex;
   flex-direction: column;
@@ -65,7 +80,7 @@
   max-width: 80%;
   word-wrap: break-word;
   border-radius: 5px;
-  padding: 5px 8px;
+  padding: 3px 8px;
   font-family: "Muli", sans-serif;
 }
 .chat-messages .output {
@@ -80,7 +95,7 @@
   max-width: 80%;
   word-wrap: break-word;
   border-radius: 5px;
-  padding: 5px 8px;
+  padding: 3px 8px;
   color: white;
   font-family: "Muli", sans-serif;
 }
@@ -101,6 +116,7 @@
   padding: 5px;
 }
 .mini-panel-emojis .emojis img {
+  max-width: 40px;
   width: 40px;
   height: 40px;
   margin: 5px;
@@ -108,6 +124,7 @@
   cursor: pointer;
 }
 .mini-panel-emojis .emojis img:hover {
+  max-width: initial;
   transition-duration: 0.2s;
   margin: 0px;
   padding: 0px;
@@ -240,6 +257,9 @@
 #list-contacts ul li:hover {
   transition-duration: 0.4s;
   box-shadow: 2px 2px 6px #e0e0e0;
+  background-color: #ebebebd2;
+}
+#list-contacts .selected-contact {
   background-color: #ebebebd2;
 }
 #list-contacts .item-user-list {
@@ -422,6 +442,7 @@
   font-family: "Muli", sans-serif;
   color: white;
   background: #5c5eaf;
+  cursor: pointer;
 }
 
 * {

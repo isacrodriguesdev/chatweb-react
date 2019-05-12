@@ -10,11 +10,17 @@ import Active from './header/Active'
 import Mount from './utils/Mount'
 
 import {Creators as actions} from '../store/actions'
+import {Creators as userActions} from '../store/user'
 
 class App extends Component {
 
    closePanels(e) {
+      e.stopPropagation()
       this.props.closeAllPanels()
+   }
+
+   componentWillMount() {
+      this.props.getAuthUser('token')
    }
 
    render() {
@@ -25,8 +31,8 @@ class App extends Component {
             <div id="header">
                <Profile />
                <div id="active-chat">
-                  <Mount render={this.props._openChat}>
-                     <Active name="Lena Souza " isdigit="digitando..." />
+                  <Mount render={this.props.isOpenChat}>
+                     <Active />
                   </Mount>
                </div>
             </div>
@@ -40,13 +46,13 @@ class App extends Component {
             <div id="main">
                <div className="panels-main">
 
-                  <Mount render={this.props._openHome}> <h2>Home</h2> </Mount>
+                  <Mount render={this.props.isOpenHome}> <h2>Home</h2> </Mount>
 
-                  <Mount render={this.props._openChat}> 
-                     <Chat data-chat={{}} /> 
+                  <Mount render={this.props.isOpenChat}> 
+                     <Chat /> 
                   </Mount>
 
-                  <Mount render={this.props._openSettings}> <Settings /> </Mount>
+                  <Mount render={this.props.isOpenSettings}> <Settings /> </Mount>
                   
                </div>
             </div>
@@ -58,13 +64,13 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => {
 
-   return bindActionCreators(actions, dispatch)
+   return bindActionCreators({...actions, ...userActions}, dispatch)
 }
 
 export default connect((state) => ({
 
-   _openHome: state.actions.openHome,
-   _openChat: state.actions.openChat,
-   _openSettings: state.actions.openSettings
+   isOpenHome: state.actions.openHome,
+   isOpenChat: state.actions.openChat,
+   isOpenSettings: state.actions.openSettings
 
 }), mapDispatchToProps)(App)

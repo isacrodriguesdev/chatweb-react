@@ -41,7 +41,7 @@ export const Creators = {
       return { type: Types.OPENED_HOME }
    },
    openChat: () => {
-      return { type: Types.OPENED_CHAT }
+      return { type: Types.OPENED_CHAT}
    }
 }
 

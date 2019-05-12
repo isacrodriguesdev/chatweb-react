@@ -4,6 +4,19 @@ import { connect } from 'react-redux'
 
 class Settings extends Component {
 
+   constructor(props) {
+      super(props)
+
+      this.state = {
+         name: this.props.user.name,
+         email: this.props.user.email,
+         totalFriends: this.props.user.totalFriends,
+         totalOnline: this.props.user.totalOnline,
+         password: "",
+         confirmPassword: "",
+      }
+   }
+
    render() {
 
       return (
@@ -15,15 +28,15 @@ class Settings extends Component {
                   <div className="card-user">
                      <div id="pt1-container">
                         <label htmlFor="">
-                           <img src="http://66.media.tumblr.com/1a91543aab26f9bb07cf6411996a32fb/tumblr_mnzw2mhWHo1ra6vg3o5_500.jpg" id="photo-sett" />
+                           <img src={this.props.user.photoUrl} id="photo-sett" />
                         </label>
-                        <h5>Isac Sergio R. Silva</h5>
+                        <h5>{this.props.user.name}</h5>
                      </div>
 
                      <div id="pt2-container">
 
-                        <div id='info1'> <p> Online <br /> <b>5</b> </p> </div>
-                        <div id='info2'> <p> Amigos <br /> <b>15</b> </p> </div>
+                        <div id='info1'> <p> Online <br /> <b>{this.state.totalOnline}</b> </p> </div>
+                        <div id='info2'> <p> Amigos <br /> <b>{this.state.totalFriends}</b> </p> </div>
                         {/* <div id='info3'> <p> Solicitações <br /> <b>0</b> </p> </div> */}
 
                      </div>
@@ -36,25 +49,29 @@ class Settings extends Component {
                      <form action="">
                         <div className="flex-row">
                            <div><legend>Nome</legend>
-                              <input type="text" value={"Isac S. Rodrigues Silva"} />
+                              <input type="text" value={this.state.name} 
+                              />
                            </div>
                            <div>
                               <legend>Email</legend>
-                              <input type="email" value={"isac.sergio@outlook.com"} />
+                              <input type="email" value={this.state.email} 
+                              />
                            </div>
                         </div>
                         
                         <div className="flex-row">
                            
                            <div> <legend>Senha</legend>
-                              <input type="password" value={""} placeholder="Nova senha" />
+                              <input type="password" value={this.state.password} placeholder="Nova senha" 
+                              />
                            </div>
 
                            <div> <legend>Senha</legend>
-                              <input type="password" value={""} placeholder="Repita a nova senha" />
+                              <input type="password" value={this.state.confirmPassword} placeholder="Repita a nova senha" 
+                              />
                            </div>
                         </div>
-                        <button>Alterar</button>
+                        <button onClick={e => e.preventDefault()}>Alterar</button>
                      </form>
                   </div>
                </div>
@@ -72,5 +89,6 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect((state) => ({
 
+   user: state.user
 
 }), mapDispatchToProps)(Settings)

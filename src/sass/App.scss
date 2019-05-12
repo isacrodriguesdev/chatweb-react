@@ -16,6 +16,24 @@ $shadow: 2px 2px 6px rgba(192, 192, 192, 0.664);
     cursor: pointer;
 }
 
+
+// RETIRE DAQUI
+
+#panel-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 200px;
+    input {
+        font-family: 'Muli', sans-serif;
+        padding: 12px 15px;
+        border-radius: 2px;
+        width: 90%;
+        border: 1px solid rgb(230, 230, 230);
+        box-shadow: 2px 2px 5px rgba(192, 192, 192, 0.432);
+    }
+}
+
 @import './Fonts.scss';
 @import './Chat.scss';
 @import './Header.scss';

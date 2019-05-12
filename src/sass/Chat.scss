@@ -58,7 +58,7 @@
             max-width: 80%;
             word-wrap: break-word;
             border-radius: 5px;
-            padding: 5px 8px;
+            padding: 3px 8px;
             font-family: "Muli", sans-serif;
         }
     }
@@ -74,7 +74,7 @@
             max-width: 80%;
             word-wrap: break-word;
             border-radius: 5px;
-            padding: 5px 8px;
+            padding: 3px 8px;
             color: white;
             font-family: "Muli", sans-serif;
         }
@@ -96,14 +96,18 @@
         display: flex;
         flex-wrap: wrap;
         padding: 5px;
+
         $imgSize: 40px;
+        
         img {
+            max-width: $imgSize;
             width: $imgSize;
             height: $imgSize;
             margin: 5px;
             padding: 5px;
             cursor: pointer;
             &:hover {
+                max-width: initial;
                 transition-duration: 0.2s;
                 margin: 5px - 5;
                 padding: 5px - 5;
